@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <header className="header">
       <div className="container header__inner">
-        <a href="#home" className="logo" onClick={closeNav}>Jane Kim</a>
+        <a href="#home" className="logo" onClick={closeNav}>NOTOFOLIO</a>
         <button
           className="nav-toggle"
           aria-label="메뉴 열기"
