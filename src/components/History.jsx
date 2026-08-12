@@ -26,6 +26,8 @@ function buildRows(entries) {
       rowStart: rowCursor,
       span: months.length,
       title: entry.title,
+      company: entry.company,
+      items: entry.items,
       bordered: entryIndex !== 0,
     });
 
@@ -76,7 +78,18 @@ export default function History() {
                 className={`history__title${cell.bordered ? ' is-bordered' : ''}`}
                 style={{ gridRow: `${cell.rowStart} / span ${cell.span}` }}
               >
-                {cell.title}
+                {cell.items ? (
+                  <>
+                    <div className="history__company">{cell.company}</div>
+                    <ul className="history__subitems">
+                      {cell.items.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  cell.title
+                )}
               </div>
             ))}
           </div>

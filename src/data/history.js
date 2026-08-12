@@ -8,7 +8,17 @@ export const history = [
   { year: '2026', ...placeholderYear() },
   { year: '2025', ...placeholderYear() },
   { year: '2024', ...placeholderYear() },
-  { year: '2023', ...placeholderYear() },
+  {
+    year: '2023',
+    entries: [
+      { month: '11월', title: '(주)플라츠/ 가구디자인 및 렌더링,애니메이션' },
+      {
+        month: '4월',
+        company: 'MGMC Design',
+        items: ['진공쌀통 디자인 및 렌더링,상세페이지 디렉팅', '키패드 디자인'],
+      },
+    ],
+  },
   {
     year: '2022',
     entries: [
