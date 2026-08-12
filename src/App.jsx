@@ -3,6 +3,7 @@ import Intro from './components/Intro.jsx';
 import OysterEmbeddedHero from './components/registry/oyster-embedded-hero/index.jsx';
 import RiottersFooter from './components/registry/riotters-footer/index.jsx';
 import About from './components/About.jsx';
+import History from './components/History.jsx';
 import Work from './components/Work.jsx';
 import Contact from './components/Contact.jsx';
 
@@ -23,6 +24,7 @@ export default function App() {
           onCtaClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
         />
         <About />
+        <History />
         <Work />
         <Contact />
       </main>

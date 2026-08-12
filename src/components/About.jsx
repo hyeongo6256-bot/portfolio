@@ -10,7 +10,10 @@ export default function About() {
   return (
     <section id="about" className="about">
       <div className="container about__grid">
-        <div ref={imageRef} className="about__image reveal" aria-hidden="true"></div>
+        <div ref={imageRef} className="about__image reveal">
+          <img src="/about/portrait-line.png" alt="" className="about__image-layer about__image-layer--line" />
+          <img src="/about/portrait-photo.png" alt="노형오" className="about__image-layer about__image-layer--photo" />
+        </div>
         <div ref={textRef} className="about__text reveal">
           <h2 className="section-title">INFO. <span className="section-title__name">No Hyeong-O</span></h2>
           <p>

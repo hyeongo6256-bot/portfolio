@@ -12,7 +12,7 @@ export default function Work() {
   return (
     <section id="work" className="work">
       <div className="container">
-        <h2 ref={titleRef} className="section-title reveal">프로젝트</h2>
+        <h2 ref={titleRef} className="section-title reveal">PROJECT</h2>
         <p ref={subRef} className="section-sub reveal">최근 작업한 프로젝트들을 소개합니다.</p>
 
         <div className="work__grid">

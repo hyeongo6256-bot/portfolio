@@ -19,6 +19,7 @@ export default function Header() {
         </button>
         <nav className={`nav${isOpen ? ' is-open' : ''}`}>
           <a href="#about" onClick={closeNav}>소개</a>
+          <a href="#history" onClick={closeNav}>연혁</a>
           <a href="#work" onClick={closeNav}>프로젝트</a>
           <a href="#contact" onClick={closeNav}>연락처</a>
         </nav>
