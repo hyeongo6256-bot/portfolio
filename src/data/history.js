@@ -8,4 +8,6 @@ export const history = [
   { year: '2026', ...placeholderYear() },
   { year: '2025', ...placeholderYear() },
   { year: '2024', ...placeholderYear() },
+  { year: '2023', ...placeholderYear() },
+  { year: '2022', ...placeholderYear() },
 ];
