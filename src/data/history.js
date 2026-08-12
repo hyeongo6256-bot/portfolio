@@ -9,5 +9,14 @@ export const history = [
   { year: '2025', ...placeholderYear() },
   { year: '2024', ...placeholderYear() },
   { year: '2023', ...placeholderYear() },
-  { year: '2022', ...placeholderYear() },
+  {
+    year: '2022',
+    entries: [
+      { month: '6월', title: '평택 청담고등학교 Rhinoceros 3D 강사' },
+      { month: '5월', title: 'D2B Design fair' },
+      { month: '4월', title: 'ALZAL Design Studio/ Editing lecture video subtitles' },
+      { month: '3월', title: 'LK:DAOL SUPPLY/ Silicone Hera Brochure design & Rendering' },
+      { month: '2월', title: '국립공주대학교 산업디자인공학부 제품디자인 학사 졸업' },
+    ],
+  },
 ];

@@ -2,12 +2,46 @@ import { useState } from 'react';
 import { useReveal } from '../hooks/useReveal.js';
 import { history } from '../data/history.js';
 
+function buildRows(entries) {
+  const monthCells = [];
+  const titleCells = [];
+  let lastMonth = null;
+  let rowCursor = 1;
+
+  entries.forEach((entry, entryIndex) => {
+    const months = entry.months ?? [entry.month];
+
+    months.forEach((month, i) => {
+      monthCells.push({
+        key: `m-${entryIndex}-${i}`,
+        row: rowCursor + i,
+        text: month !== lastMonth ? month : '',
+        bordered: !(entryIndex === 0 && i === 0) && i === 0,
+      });
+      lastMonth = month;
+    });
+
+    titleCells.push({
+      key: `t-${entryIndex}`,
+      rowStart: rowCursor,
+      span: months.length,
+      title: entry.title,
+      bordered: entryIndex !== 0,
+    });
+
+    rowCursor += months.length;
+  });
+
+  return { monthCells, titleCells };
+}
+
 export default function History() {
   const titleRef = useReveal();
   const listRef = useReveal();
   const [selectedYear, setSelectedYear] = useState(history[0]?.year);
 
   const activeGroup = history.find((group) => group.year === selectedYear);
+  const { monthCells, titleCells } = activeGroup ? buildRows(activeGroup.entries) : { monthCells: [], titleCells: [] };
 
   return (
     <section id="history" className="history">
@@ -26,19 +60,26 @@ export default function History() {
               </button>
             ))}
           </div>
-          {activeGroup && (
-            <ul className="history__entries">
-              {activeGroup.entries.map((entry, i) => {
-                const showMonth = i === 0 || activeGroup.entries[i - 1].month !== entry.month;
-                return (
-                  <li key={i} className="history__entry">
-                    <span className="history__month">{showMonth ? entry.month : ''}</span>
-                    <span className="history__title">{entry.title}</span>
-                  </li>
-                );
-              })}
-            </ul>
-          )}
+          <div className="history__entries">
+            {monthCells.map((cell) => (
+              <div
+                key={cell.key}
+                className={`history__month${cell.bordered ? ' is-bordered' : ''}`}
+                style={{ gridRow: cell.row }}
+              >
+                {cell.text}
+              </div>
+            ))}
+            {titleCells.map((cell) => (
+              <div
+                key={cell.key}
+                className={`history__title${cell.bordered ? ' is-bordered' : ''}`}
+                style={{ gridRow: `${cell.rowStart} / span ${cell.span}` }}
+              >
+                {cell.title}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

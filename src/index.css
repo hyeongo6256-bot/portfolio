@@ -346,31 +346,27 @@ a { color: inherit; text-decoration: none; }
 }
 
 .history__entries {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.history__entry {
   display: grid;
-  grid-template-columns: 72px 1fr;
-  gap: 24px;
-  padding: 14px 0;
-  border-top: 1px solid var(--line);
-}
-
-.history__entries li:first-child {
-  border-top: none;
+  grid-template-columns: 96px 1fr;
+  column-gap: 24px;
 }
 
 .history__month {
   color: var(--muted);
   font-size: 0.9rem;
+  padding: 14px 0;
 }
 
 .history__title {
   font-size: 1rem;
   font-weight: 500;
+  padding: 14px 0;
+  align-self: start;
+}
+
+.history__month.is-bordered,
+.history__title.is-bordered {
+  border-top: 1px solid var(--line);
 }
 
 /* Work */
