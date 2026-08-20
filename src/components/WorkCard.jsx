@@ -1,6 +1,6 @@
 import { useReveal } from '../hooks/useReveal.js';
 
-export default function WorkCard({ thumbClass, thumbImage, title, onSelect }) {
+export default function WorkCard({ thumbClass, thumbImage, thumbPosition, title, onSelect }) {
   const cardRef = useReveal();
 
   const handleKeyDown = (event) => {
@@ -21,7 +21,14 @@ export default function WorkCard({ thumbClass, thumbImage, title, onSelect }) {
       onKeyDown={handleKeyDown}
     >
       <div className={`work-card__thumb ${thumbClass}`}>
-        {thumbImage && <img src={thumbImage} alt={title} className="work-card__thumb-img" />}
+        {thumbImage && (
+          <img
+            src={thumbImage}
+            alt={title}
+            className="work-card__thumb-img"
+            style={thumbPosition ? { objectPosition: thumbPosition } : undefined}
+          />
+        )}
       </div>
     </article>
   );

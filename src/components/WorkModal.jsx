@@ -1,11 +1,15 @@
 import { useEffect, useMemo, useState } from 'react';
 
-function buildPages(project) {
-  const { tag, title, subline, description, thumbImage, details } = project;
-  const pages = [{ type: 'cover', tag, title, subline, description }];
+const hasKorean = (text) => /[가-힣]/.test(text);
 
-  if (thumbImage) {
-    pages.push({ type: 'image', src: thumbImage, alt: title });
+function buildPages(project) {
+  const { tag, title, date, subline, description, exhibit, thumbImage, thumbPosition, thumbVideo, details } = project;
+  const pages = [{ type: 'cover', tag, title, date, subline, description, exhibit }];
+
+  if (thumbVideo) {
+    pages.push({ type: 'video', src: thumbVideo, poster: thumbImage });
+  } else if (thumbImage) {
+    pages.push({ type: 'image', src: thumbImage, alt: title, position: thumbPosition });
   }
 
   details?.sections?.forEach((section) => {
@@ -19,13 +23,25 @@ function buildPages(project) {
   return pages;
 }
 
-function Page({ page }) {
+function Page({ page, pageNumber }) {
   if (!page) return <div className="work-book__page work-book__page--blank" />;
 
   if (page.type === 'image') {
     return (
       <div className="work-book__page work-book__page--image">
-        <img src={page.src} alt={page.alt} />
+        <img
+          src={page.src}
+          alt={page.alt}
+          style={page.position ? { objectPosition: page.position } : undefined}
+        />
+      </div>
+    );
+  }
+
+  if (page.type === 'video') {
+    return (
+      <div className="work-book__page work-book__page--image">
+        <video src={page.src} poster={page.poster} controls playsInline />
       </div>
     );
   }
@@ -35,16 +51,37 @@ function Page({ page }) {
       <div className="work-book__page work-book__page--text">
         <h4>{page.heading}</h4>
         <p>{page.body}</p>
+        <div className="work-book__page-footer">
+          <span>{pageNumber}</span>
+        </div>
       </div>
     );
   }
+
+  const paragraphs = Array.isArray(page.description)
+    ? page.description
+    : page.description
+      ? [page.description]
+      : [];
 
   return (
     <div className="work-book__page work-book__page--text">
       <span className="work-card__tag">{page.tag}</span>
       <h3>{page.title}</h3>
+      {page.date && <p className="work-modal__date">{page.date}</p>}
       {page.subline && <p className="work-modal__subline">{page.subline}</p>}
-      {page.description && <p>{page.description}</p>}
+      {paragraphs.map((paragraph, i) => {
+        const isLangBreak = i > 0 && hasKorean(paragraphs[i - 1]) && !hasKorean(paragraph);
+        return (
+          <p key={i} className={isLangBreak ? 'work-modal__lang-break' : undefined}>
+            {paragraph}
+          </p>
+        );
+      })}
+      <div className="work-book__page-footer">
+        <span>{pageNumber}</span>
+        {page.exhibit && <span>{page.exhibit}</span>}
+      </div>
     </div>
   );
 }
@@ -71,16 +108,16 @@ export default function WorkModal({ project, onClose }) {
     };
   }, [onClose, spreadCount]);
 
-  const left = pages[spreadIndex * 2];
-  const right = pages[spreadIndex * 2 + 1];
+  const leftIndex = spreadIndex * 2;
+  const rightIndex = leftIndex + 1;
 
   return (
     <div className="work-modal-overlay" onClick={onClose}>
       <div className="work-modal work-book" onClick={(event) => event.stopPropagation()}>
         <button className="work-modal__close" onClick={onClose} aria-label="닫기">×</button>
         <div className="work-book__spread">
-          <Page page={left} />
-          <Page page={right} />
+          <Page page={pages[leftIndex]} pageNumber={String(leftIndex + 1).padStart(2, '0')} />
+          <Page page={pages[rightIndex]} pageNumber={String(rightIndex + 1).padStart(2, '0')} />
         </div>
         <div className="work-book__nav">
           <button
