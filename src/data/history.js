@@ -8,6 +8,7 @@ export const history = [
   {
     year: '2026',
     entries: [
+      { month: '8월', company: '82부동산', items: ['제품제작 및 전시총괄디렉팅'] },
       { month: '6월', title: 'BISCUIT STUDIO 웹 디자인' },
       { month: '5월', title: 'Hatsune Miku x NORI 굿즈 제작 및 납품' },
       { month: '2월', title: '2026 LIVING DESIGN FAIR' },
