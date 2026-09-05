@@ -3,7 +3,7 @@ export const projects = [
     id: 1,
     year: 2025,
     thumbClass: 'work-card__thumb--1',
-    thumbImage: '/work/the-maree-furniture.jpg',
+    thumbImage: '/work/the-maree/thumb.jpg',
     tag: 'BI/PRODUCT DESIGN',
     title: 'the marée',
     date: '2024.Dec - 2025.Jan',
