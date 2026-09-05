@@ -107,8 +107,7 @@ export default function OysterEmbeddedHero({
           <span
             style={{
               fontFamily: "'Dancing Script', cursive",
-              fontWeight: 300,
-              fontStyle: "italic",
+              fontWeight: 400,
               color: colors.accent,
             }}
           >
