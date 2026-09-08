@@ -106,7 +106,7 @@ export default function OysterEmbeddedHero({
           <span className="text-neutral-900">{headlineLine1Start}{" "}</span>
           <span
             style={{
-              fontFamily: "'Dancing Script', cursive",
+              fontFamily: "'Attoma', cursive",
               fontWeight: 400,
               color: colors.accent,
             }}
