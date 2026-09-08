@@ -27,8 +27,18 @@ export default function Work() {
   const titleRef = useReveal();
   const subRef = useReveal();
   const [selectedProject, setSelectedProject] = useState(null);
+  const [previewProject, setPreviewProject] = useState(null);
 
   const sortedProjects = [...projects].sort((a, b) => dateKey(b) - dateKey(a));
+
+  const handleSelect = (project) => {
+    setPreviewProject(project);
+  };
+
+  const handlePreviewClick = () => {
+    setSelectedProject(previewProject);
+    setPreviewProject(null);
+  };
 
   return (
     <section id="work" className="work">
@@ -38,10 +48,25 @@ export default function Work() {
 
         <div className="work__grid">
           {sortedProjects.map((project) => (
-            <WorkCard key={project.id} {...project} onSelect={() => setSelectedProject(project)} />
+            <WorkCard key={project.id} {...project} onSelect={() => handleSelect(project)} />
           ))}
         </div>
       </div>
+
+      {previewProject && (
+        <div className="work-preview-overlay" onClick={() => setPreviewProject(null)}>
+          <img
+            src={previewProject.thumbImage}
+            alt={previewProject.title}
+            className="work-preview-overlay__img"
+            style={previewProject.thumbPosition ? { objectPosition: previewProject.thumbPosition } : undefined}
+            onClick={(event) => {
+              event.stopPropagation();
+              handlePreviewClick();
+            }}
+          />
+        </div>
+      )}
 
       {selectedProject && (
         <WorkModal project={selectedProject} onClose={() => setSelectedProject(null)} />
