@@ -9,7 +9,8 @@ const MONTHS = {
   jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12,
 };
 
-function dateKey({ date, year }) {
+function dateKey({ date, year, sortKey }) {
+  if (typeof sortKey === 'number') return sortKey;
   if (date) {
     const end = date.split('-').pop().trim();
     const match = end.match(/(\d{4})\.(\w+)/);

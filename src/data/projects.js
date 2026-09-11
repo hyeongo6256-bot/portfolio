@@ -19,6 +19,7 @@ export const projects = [
   {
     id: 7,
     year: 2021,
+    sortKey: 24261, // ranks above Obscured (2021.Aug) despite the earlier calendar date
     thumbClass: 'work-card__thumb--1',
     thumbImage: '/work/kiwa/kiwa-thumb.jpg',
     tag: 'PRODUCT DESIGN',
@@ -170,12 +171,12 @@ export const projects = [
   },
   {
     id: 14,
-    year: 2020,
+    year: 2021,
     thumbClass: 'work-card__thumb--2',
     thumbImage: '/work/obscured/thumb.jpg',
     tag: 'PRODUCT DESIGN',
     title: 'Obscured',
-    date: '2020.Aug',
+    date: '2021.Aug',
     description: '빔 프로젝터와 블루투스 스피커 컨셉 디자인. 팀 프로젝트로 스피커 파트(형태 설계·렌더링)를 담당했습니다.',
   },
 ];
