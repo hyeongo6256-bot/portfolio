@@ -149,6 +149,19 @@ export const projects = [
     description: '[프로젝트 설명을 이곳에 작성하세요.]',
   },
   {
+    id: 20,
+    year: 2023,
+    thumbClass: 'work-card__thumb--3',
+    thumbImage: '/work/luio/thumb.jpg',
+    tag: 'PRODUCT DESIGN',
+    title: 'LUiO',
+    date: '2023.Jan',
+    description: [
+      "일상 속 벽과 벽 사이, 좁은 틈새에서 발견한 여유의 감각에서 출발한 무드 사이드 테이블입니다. 구조 사이의 틈을 케이블 정리용 홈으로 기능화해, 공간을 더 정돈되고 여유롭게 만듭니다.",
+      "LUiO began with the idea of '틈' (the gap) — the quiet openness found in the narrow space between walls. The open gap in the tabletop organizes cables while keeping the living space clean and visually relaxed.",
+    ],
+  },
+  {
     id: 12,
     year: 2022,
     thumbClass: 'work-card__thumb--6',
