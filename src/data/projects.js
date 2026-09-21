@@ -66,16 +66,6 @@ export const projects = [
     ],
   },
   {
-    id: 17,
-    year: 2023,
-    thumbClass: 'work-card__thumb--5',
-    thumbImage: '/work/fluidic/thumb.jpg',
-    tag: '[태그를 입력하세요]',
-    title: '[제목을 입력하세요]',
-    date: '2023.Dec',
-    description: '[프로젝트 설명을 이곳에 작성하세요.]',
-  },
-  {
     id: 9,
     year: 2025,
     thumbClass: 'work-card__thumb--3',
