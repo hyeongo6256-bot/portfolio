@@ -3,8 +3,21 @@ import { useEffect, useMemo, useState } from 'react';
 const hasKorean = (text) => /[가-힣]/.test(text);
 
 function buildPages(project) {
-  const { tag, title, date, subline, description, exhibit, thumbImage, thumbPosition, thumbVideo, details } = project;
-  const pages = [{ type: 'cover', tag, title, date, subline, description, exhibit }];
+  const { tag, title, date, subline, description, exhibit, thumbImage, thumbPosition, thumbVideo, leadImages, customPages, details } = project;
+
+  if (customPages && leadImages?.length) {
+    return leadImages
+      .filter(Boolean)
+      .map((src, i) => ({ type: 'image', src, alt: `${title} ${i + 1}` }));
+  }
+
+  const pages = [];
+
+  leadImages?.forEach((src, i) => {
+    if (src) pages.push({ type: 'image', src, alt: `${title} ${i + 1}` });
+  });
+
+  pages.push({ type: 'cover', tag, title, date, subline, description, exhibit });
 
   if (thumbVideo) {
     pages.push({ type: 'video', src: thumbVideo, poster: thumbImage });
@@ -115,31 +128,29 @@ export default function WorkModal({ project, onClose }) {
     <div className="work-modal-overlay" onClick={onClose}>
       <div className="work-modal work-book" onClick={(event) => event.stopPropagation()}>
         <button className="work-modal__close" onClick={onClose} aria-label="닫기">×</button>
+        <button
+          type="button"
+          className="work-book__nav-btn work-book__nav-btn--prev"
+          onClick={goPrev}
+          disabled={spreadIndex === 0}
+          aria-label="이전 페이지"
+        >
+          ‹
+        </button>
+        <button
+          type="button"
+          className="work-book__nav-btn work-book__nav-btn--next"
+          onClick={goNext}
+          disabled={spreadIndex === spreadCount - 1}
+          aria-label="다음 페이지"
+        >
+          ›
+        </button>
         <div className="work-book__spread">
           <Page page={pages[leftIndex]} pageNumber={String(leftIndex + 1).padStart(2, '0')} />
           <Page page={pages[rightIndex]} pageNumber={String(rightIndex + 1).padStart(2, '0')} />
         </div>
-        <div className="work-book__nav">
-          <button
-            type="button"
-            className="work-book__nav-btn"
-            onClick={goPrev}
-            disabled={spreadIndex === 0}
-            aria-label="이전 페이지"
-          >
-            ‹
-          </button>
-          <span className="work-book__page-count">{spreadIndex + 1} / {spreadCount}</span>
-          <button
-            type="button"
-            className="work-book__nav-btn"
-            onClick={goNext}
-            disabled={spreadIndex === spreadCount - 1}
-            aria-label="다음 페이지"
-          >
-            ›
-          </button>
-        </div>
+        <span className="work-book__page-count">{spreadIndex + 1} / {spreadCount}</span>
       </div>
     </div>
   );
