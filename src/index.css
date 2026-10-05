@@ -487,14 +487,12 @@ a { color: inherit; text-decoration: none; }
 .work-modal {
   position: relative;
   width: 100%;
-  max-width: 960px;
 }
 
 .work-modal.work-book {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: none;
   width: min(96vw, 1700px, calc(94vh * 1.5));
 }
 

@@ -37,7 +37,7 @@ function buildPages(project) {
 }
 
 function Page({ page, pageNumber }) {
-  if (!page) return <div className="work-book__page work-book__page--blank" />;
+  if (!page) return <div className="work-book__page" />;
 
   if (page.type === 'image') {
     return (
