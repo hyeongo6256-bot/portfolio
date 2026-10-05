@@ -643,6 +643,10 @@ a { color: inherit; text-decoration: none; }
 }
 
 .work-book__page-count {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   min-width: 50px;
   margin-top: 20px;
   color: var(--muted);
