@@ -56,16 +56,25 @@ export default function Work() {
 
       {previewProject && (
         <div className="work-preview-overlay" onClick={() => setPreviewProject(null)}>
-          <img
-            src={previewProject.thumbImage}
-            alt={previewProject.title}
-            className="work-preview-overlay__img"
-            style={previewProject.thumbPosition ? { objectPosition: previewProject.thumbPosition } : undefined}
-            onClick={(event) => {
-              event.stopPropagation();
-              handlePreviewClick();
-            }}
-          />
+          <div className="work-preview-overlay__frame" onClick={(event) => event.stopPropagation()}>
+            <div className="work-preview-overlay__media">
+              <img
+                src={previewProject.thumbImage}
+                alt={previewProject.title}
+                className="work-preview-overlay__img"
+                style={previewProject.thumbPosition ? { objectPosition: previewProject.thumbPosition } : undefined}
+                onClick={handlePreviewClick}
+              />
+              <div className="work-preview-overlay__aside">
+                <button type="button" className="work-preview-overlay__hint" onClick={handlePreviewClick}>
+                  상세 보기 <span className="work-preview-overlay__arrow">→</span>
+                </button>
+                <p className="work-preview-overlay__note">
+                  이미지를 누르거나 상세 보기를 클릭하면 상세페이지를 볼 수 있습니다.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       )}
 
