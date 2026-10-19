@@ -8,7 +8,7 @@ function buildPages(project) {
   if (customPages && leadImages?.length) {
     return leadImages
       .filter(Boolean)
-      .map((src, i) => ({ type: 'image', src, alt: `${title} ${i + 1}` }));
+      .map((item, i) => (typeof item === 'string' ? { type: 'image', src: item, alt: `${title} ${i + 1}` } : item));
   }
 
   const pages = [];
@@ -29,8 +29,13 @@ function buildPages(project) {
     pages.push({ type: 'section', heading: section.heading, body: section.body });
   });
 
-  details?.gallery?.forEach((src, i) => {
-    if (src) pages.push({ type: 'image', src, alt: `${title} 이미지 ${i + 1}` });
+  details?.gallery?.forEach((item, i) => {
+    if (!item) return;
+    if (typeof item === 'string') {
+      pages.push({ type: 'image', src: item, alt: `${title} 이미지 ${i + 1}` });
+    } else {
+      pages.push(item);
+    }
   });
 
   return pages;
@@ -55,6 +60,24 @@ function Page({ page, pageNumber }) {
     return (
       <div className="work-book__page work-book__page--image">
         <video src={page.src} poster={page.poster} controls playsInline />
+      </div>
+    );
+  }
+
+  if (page.type === 'video-insert') {
+    return (
+      <div className="work-book__page work-book__page--image work-book__page--video-overlay">
+        <img src={page.bgImage} className="work-book__video-overlay-bg" />
+        <video
+          src={page.video}
+          controls
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="work-book__video-overlay-video"
+          style={{ top: `${page.boxTop * 100}%`, height: `${page.boxHeight * 100}%` }}
+        />
       </div>
     );
   }

@@ -606,6 +606,26 @@ a { color: inherit; text-decoration: none; }
   display: block;
 }
 
+.work-book__page--video-overlay {
+  position: relative;
+}
+
+.work-book__video-overlay-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.work-book__video-overlay-video {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+}
+
 .work-book__page--text {
   display: flex;
   flex-direction: column;
