@@ -41,6 +41,39 @@ function buildPages(project) {
   return pages;
 }
 
+function ImageThenVideoInset({ image, bgImage, video, box, delay }) {
+  const [showVideo, setShowVideo] = useState(false);
+
+  useEffect(() => {
+    setShowVideo(false);
+    const timer = setTimeout(() => setShowVideo(true), delay ?? 2000);
+    return () => clearTimeout(timer);
+  }, [image, bgImage, video, delay]);
+
+  if (!showVideo) {
+    return <img src={image} className="work-book__video-overlay-bg" />;
+  }
+
+  return (
+    <>
+      <img src={bgImage} className="work-book__video-overlay-bg" />
+      <video
+        src={video}
+        autoPlay
+        playsInline
+        controls
+        className="work-book__video-overlay-video work-book__video-overlay-video--contain"
+        style={{
+          left: `${box.left * 100}%`,
+          top: `${box.top * 100}%`,
+          width: `${box.width * 100}%`,
+          height: `${box.height * 100}%`,
+        }}
+      />
+    </>
+  );
+}
+
 function Page({ page, pageNumber }) {
   if (!page) return <div className="work-book__page" />;
 
@@ -60,6 +93,20 @@ function Page({ page, pageNumber }) {
     return (
       <div className="work-book__page work-book__page--image">
         <video src={page.src} poster={page.poster} controls playsInline />
+      </div>
+    );
+  }
+
+  if (page.type === 'image-video-inset-delay') {
+    return (
+      <div className="work-book__page work-book__page--image work-book__page--video-overlay">
+        <ImageThenVideoInset
+          image={page.image}
+          bgImage={page.bgImage}
+          video={page.video}
+          box={page.box}
+          delay={page.delay}
+        />
       </div>
     );
   }
@@ -170,8 +217,8 @@ export default function WorkModal({ project, onClose }) {
           ›
         </button>
         <div className="work-book__spread">
-          <Page page={pages[leftIndex]} pageNumber={String(leftIndex + 1).padStart(2, '0')} />
-          <Page page={pages[rightIndex]} pageNumber={String(rightIndex + 1).padStart(2, '0')} />
+          <Page key={leftIndex} page={pages[leftIndex]} pageNumber={String(leftIndex + 1).padStart(2, '0')} />
+          <Page key={rightIndex} page={pages[rightIndex]} pageNumber={String(rightIndex + 1).padStart(2, '0')} />
         </div>
         <span className="work-book__page-count">{spreadIndex + 1} / {spreadCount}</span>
       </div>
