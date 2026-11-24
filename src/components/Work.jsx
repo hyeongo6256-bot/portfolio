@@ -33,6 +33,7 @@ export default function Work() {
   const sortedProjects = [...projects].sort((a, b) => dateKey(b) - dateKey(a));
 
   const handleSelect = (project) => {
+    if (project.inProgress) return;
     setPreviewProject(project);
   };
 
