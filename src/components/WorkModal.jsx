@@ -113,13 +113,8 @@ function Page({ page, pageNumber }) {
 
   if (page.type === 'app-embed-inset') {
     return (
-      <div className="work-book__page work-book__page--image work-book__page--app-embed-inset">
-        <img src={page.bgImage} className="work-book__video-overlay-bg" />
-        <iframe
-          src={page.url}
-          title={page.title || 'App preview'}
-          loading="lazy"
-          allow="camera; microphone"
+      <div className="work-book__page work-book__page--app-embed-inset">
+        <div
           className="work-book__app-embed-inset-frame"
           style={{
             left: `${page.box.left * 100}%`,
@@ -127,7 +122,10 @@ function Page({ page, pageNumber }) {
             width: `${page.box.width * 100}%`,
             height: `${page.box.height * 100}%`,
           }}
-        />
+        >
+          <iframe src={page.url} title={page.title || 'App preview'} loading="lazy" allow="camera; microphone" />
+        </div>
+        <img src={page.bgImage} className="work-book__video-overlay-bg" />
       </div>
     );
   }
@@ -208,12 +206,24 @@ export default function WorkModal({ project, onClose }) {
       if (event.key === 'ArrowLeft') goPrev();
     };
     document.addEventListener('keydown', handleKeyDown);
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
-    };
+    return () => document.removeEventListener('keydown', handleKeyDown);
   }, [onClose, spreadCount]);
+
+  useEffect(() => {
+    const scrollY = window.scrollY;
+    const { body } = document;
+    body.style.position = 'fixed';
+    body.style.top = `-${scrollY}px`;
+    body.style.left = '0';
+    body.style.right = '0';
+    return () => {
+      body.style.position = '';
+      body.style.top = '';
+      body.style.left = '';
+      body.style.right = '';
+      window.scrollTo(0, scrollY);
+    };
+  }, []);
 
   const leftIndex = spreadIndex * 2;
   const rightIndex = leftIndex + 1;

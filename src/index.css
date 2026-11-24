@@ -636,13 +636,26 @@ a { color: inherit; text-decoration: none; }
 
 .work-book__page--app-embed-inset {
   position: relative;
+  padding: 0;
+  overflow: hidden;
+}
+
+.work-book__page--app-embed-inset .work-book__video-overlay-bg {
+  pointer-events: none;
 }
 
 .work-book__app-embed-inset-frame {
   position: absolute;
+  background: #fff;
+  cursor: pointer;
+}
+
+.work-book__app-embed-inset-frame iframe {
+  width: 100%;
+  height: 100%;
   border: 0;
   display: block;
-  background: #fff;
+  cursor: pointer;
 }
 
 .work-book__page--video-overlay {
@@ -901,8 +914,33 @@ a { color: inherit; text-decoration: none; }
   }
 
   .work-book__page {
+    flex: 0 0 auto;
     aspect-ratio: auto;
     overflow-y: visible;
+  }
+
+  .work-book__page--app-embed-inset,
+  .work-book__page--video-overlay {
+    aspect-ratio: 3 / 4;
+  }
+
+  .work-book__nav-btn {
+    top: auto;
+    bottom: 10px;
+    transform: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(20, 20, 26, 0.55);
+    z-index: 3;
+  }
+
+  .work-book__nav-btn--prev {
+    left: 10px;
+  }
+
+  .work-book__nav-btn--next {
+    right: 10px;
   }
 
   .hero__actions {

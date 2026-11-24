@@ -211,7 +211,7 @@ export const projects = [
     year: 2025,
     thumbClass: 'work-card__thumb--1',
     thumbImage: '/work/iland-lonely/thumb.jpg',
-    inProgress: true,
+    inProgress: false,
     customPages: true,
     leadImages: [
       '/work/iland-lonely/detail-01.jpg',
@@ -235,7 +235,7 @@ export const projects = [
       '/work/iland-lonely/detail-19.jpg',
       {
         type: 'app-embed-inset',
-        bgImage: '/work/iland-lonely/detail-20-phone-bg.jpg',
+        bgImage: '/work/iland-lonely/detail-20-phone-cutout.png',
         url: 'https://iland-nfc-demo.vercel.app',
         title: 'iLanD',
         box: { left: 303 / 1200, top: 177 / 1600, width: 593 / 1200, height: 1253 / 1600 },
