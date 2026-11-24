@@ -211,7 +211,7 @@ export const projects = [
     year: 2025,
     thumbClass: 'work-card__thumb--1',
     thumbImage: '/work/iland-lonely/thumb.jpg',
-    inProgress: false,
+    inProgress: true,
     customPages: true,
     leadImages: [
       '/work/iland-lonely/detail-01.jpg',
