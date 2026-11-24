@@ -634,16 +634,6 @@ a { color: inherit; text-decoration: none; }
   display: block;
 }
 
-.work-book__page--video-cutout {
-  position: relative;
-  padding: 0;
-}
-
-.work-book__video-cutout-video {
-  position: absolute;
-  object-fit: cover;
-}
-
 .work-book__page--video-overlay {
   position: relative;
 }
@@ -905,7 +895,6 @@ a { color: inherit; text-decoration: none; }
     overflow-y: visible;
   }
 
-  .work-book__page--video-cutout,
   .work-book__page--video-overlay {
     aspect-ratio: 3 / 4;
   }
