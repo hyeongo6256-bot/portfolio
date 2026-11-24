@@ -111,20 +111,23 @@ function Page({ page, pageNumber }) {
     );
   }
 
-  if (page.type === 'app-embed-inset') {
+  if (page.type === 'video-cutout') {
     return (
-      <div className="work-book__page work-book__page--app-embed-inset">
-        <div
-          className="work-book__app-embed-inset-frame"
+      <div className="work-book__page work-book__page--video-cutout">
+        <video
+          src={page.video}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="work-book__video-cutout-video"
           style={{
             left: `${page.box.left * 100}%`,
             top: `${page.box.top * 100}%`,
             width: `${page.box.width * 100}%`,
             height: `${page.box.height * 100}%`,
           }}
-        >
-          <iframe src={page.url} title={page.title || 'App preview'} loading="lazy" allow="camera; microphone" />
-        </div>
+        />
         <img src={page.bgImage} className="work-book__video-overlay-bg" />
       </div>
     );

@@ -234,10 +234,9 @@ export const projects = [
       '/work/iland-lonely/detail-18.jpg',
       '/work/iland-lonely/detail-19.jpg',
       {
-        type: 'app-embed-inset',
+        type: 'video-cutout',
         bgImage: '/work/iland-lonely/detail-20-phone-cutout.png',
-        url: 'https://iland-nfc-demo.vercel.app',
-        title: 'iLanD',
+        video: '/work/iland-lonely/app-demo.mp4',
         box: { left: 303 / 1200, top: 177 / 1600, width: 593 / 1200, height: 1253 / 1600 },
       },
     ],
