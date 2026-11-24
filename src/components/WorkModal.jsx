@@ -111,6 +111,27 @@ function Page({ page, pageNumber }) {
     );
   }
 
+  if (page.type === 'app-embed-inset') {
+    return (
+      <div className="work-book__page work-book__page--image work-book__page--app-embed-inset">
+        <img src={page.bgImage} className="work-book__video-overlay-bg" />
+        <iframe
+          src={page.url}
+          title={page.title || 'App preview'}
+          loading="lazy"
+          allow="camera; microphone"
+          className="work-book__app-embed-inset-frame"
+          style={{
+            left: `${page.box.left * 100}%`,
+            top: `${page.box.top * 100}%`,
+            width: `${page.box.width * 100}%`,
+            height: `${page.box.height * 100}%`,
+          }}
+        />
+      </div>
+    );
+  }
+
   if (page.type === 'video-insert') {
     return (
       <div className="work-book__page work-book__page--image work-book__page--video-overlay">
@@ -130,10 +151,13 @@ function Page({ page, pageNumber }) {
   }
 
   if (page.type === 'section') {
+    const bodyParagraphs = Array.isArray(page.body) ? page.body : [page.body];
     return (
       <div className="work-book__page work-book__page--text">
         <h4>{page.heading}</h4>
-        <p>{page.body}</p>
+        {bodyParagraphs.map((paragraph, i) => (
+          <p key={i}>{paragraph}</p>
+        ))}
         <div className="work-book__page-footer">
           <span>{pageNumber}</span>
         </div>

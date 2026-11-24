@@ -634,6 +634,17 @@ a { color: inherit; text-decoration: none; }
   display: block;
 }
 
+.work-book__page--app-embed-inset {
+  position: relative;
+}
+
+.work-book__app-embed-inset-frame {
+  position: absolute;
+  border: 0;
+  display: block;
+  background: #fff;
+}
+
 .work-book__page--video-overlay {
   position: relative;
 }
